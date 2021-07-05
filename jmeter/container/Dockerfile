@@ -1,5 +1,5 @@
 #FROM fabric8/java-centos-openjdk8-jdk:1.4
-FROM adoptopenjdk:openj9
+FROM quay.io/bmarolleau/adoptopenjdk:openj9
 MAINTAINER benoit.marolleau@fr.ibm.com
 LABEL jmeter.version="5.1"
 

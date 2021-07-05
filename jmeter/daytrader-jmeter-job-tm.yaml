@@ -2,27 +2,27 @@ apiVersion: template.openshift.io/v1
 kind: Template
 metadata:
   labels:
-    app: acmeair-jmeter
-  name: acmeair-jmeter-job
+    app: daytrader-jmeter
+  name: daytrader-jmeter-job
 objects:
   - apiVersion: batch/v1
     kind: Job
     metadata:
       labels:
-        app: acmeair-jmeter
-      name: acmeair-jmeter
+        app: daytrader-jmeter
+      name: daytrader-jmeter
     spec:
       parallelism: 1
       completions: 1
       template:
         metadata:
-          name: acmeair-jmeter
+          name: daytrader-jmeter
           labels:
-            testplan: AcmeAir-microservices-mpJwt-v2
+            testplan: daytrader-microservices-mpJwt-v2
         spec:
           containers:
           - name: jmeter
-            image:     image-registry.openshift-image-registry.svc:5000/bmarolleau/acmeair-jmeter:latest
+            image:     image-registry.openshift-image-registry.svc:5000/daytrader/apt-jmeter:latest
             resources:
               requests:
                 cpu: '500m'
@@ -81,10 +81,10 @@ objects:
 parameters:
   - description: Namespace/project the job is created in
     name: NAMESPACE
-    value: bmarolleau 
+    value:  daytrader 
   - description: Name of the ConfigMap containing the test(s) to run
     name: JMX_CONFIGMAP
-    value: acmeair-jmx
+    value: apt-jmx
   - description: Url for notification of test completion
     name: CALLBACK_URL
   - description: Name of the subdirectory where test results are to be stored 
@@ -94,13 +94,13 @@ parameters:
     value: '600' 
   - description: JHOST  
     name: JMETER_JHOST
-    value: 'acmeair-bmarolleau.apps.sandbox.power.mpl'    
+    value: 'daytrader-7-daytrader.apps.sandbox.power.mpl'    
   - description: JPORT
     name: JMETER_JPORT
     value: '80'
   - description: Name of the persistent volume claim to use for storing the test(s) results
     name: RESULT_PVC
-    value: acmeair-jmeter
+    value: apt-jmeter
   - description: 
     name: JRAMP 
     value: '60'
