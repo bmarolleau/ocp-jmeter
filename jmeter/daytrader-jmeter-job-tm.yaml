@@ -22,7 +22,7 @@ objects:
         spec:
           containers:
           - name: jmeter
-            image:     image-registry.openshift-image-registry.svc:5000/daytrader/apt-jmeter:latest
+            image:     image-registry.openshift-image-registry.svc:5000/daytrader/apt-jmeter-git:latest
             resources:
               requests:
                 cpu: '500m'
@@ -46,16 +46,6 @@ objects:
                 value:  ${JDELAY} 
               - name: J_sample_variables
                 value: "FLIGHTTOCOUNT,FLIGHTRETCOUNT,ONEWAY"
-              - name: J_INFLUXDB_SERVER
-                value: 'influxdb-1x'
-              - name: J_INFLUXDB_PORT
-                value: '8086'
-              - name: JAEGER_SERVICE_NAME
-                value: jmeter
-              - name: JAEGER_SAMPLER_PARAM
-                value: '1'
-              - name: JAEGER_PROPAGATION
-                value: 'jaeger,b3'
               - name: CALLBACK_URL
                 value: ${CALLBACK_URL}
               - name: RESULT_SUB_DIR

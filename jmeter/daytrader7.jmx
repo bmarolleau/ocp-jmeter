@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jmeterTestPlan version="1.2" properties="3.2" jmeter="3.3 r1808647">
+<jmeterTestPlan version="1.2" properties="2.6" jmeter="2.11 r1554548">
   <hashTree>
-    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="DayTrader7" enabled="true">
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="DayTrader" enabled="true">
       <stringProp name="TestPlan.comments"></stringProp>
       <boolProp name="TestPlan.functional_mode">false</boolProp>
       <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
@@ -17,7 +17,7 @@
           <intProp name="LoopController.loops">-1</intProp>
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">${__P(THREADS,50)}</stringProp>
-        <stringProp name="ThreadGroup.ramp_time">${__P(RAMP,0)}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">0</stringProp>
         <longProp name="ThreadGroup.start_time">1355173676000</longProp>
         <longProp name="ThreadGroup.end_time">1355173676000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
@@ -51,6 +51,16 @@
         <hashTree/>
         <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
           <collectionProp name="Arguments.arguments">
+            <elementProp name="VIEWSTATE" elementType="Argument">
+              <stringProp name="Argument.name">VIEWSTATE</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="jsessionid" elementType="Argument">
+              <stringProp name="Argument.name">jsessionid</stringProp>
+              <stringProp name="Argument.value"></stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
             <elementProp name="minimumuid" elementType="Argument">
               <stringProp name="Argument.name">minimumuid</stringProp>
               <stringProp name="Argument.value">${__P(BOTUID,0)}</stringProp>
@@ -63,29 +73,23 @@
             </elementProp>
             <elementProp name="hostname" elementType="Argument">
               <stringProp name="Argument.name">hostname</stringProp>
-              <stringProp name="Argument.value">${__P(HOST,localhost)}</stringProp>
+              <stringProp name="Argument.value">${__P(HOST,ivy3)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="port" elementType="Argument">
               <stringProp name="Argument.name">port</stringProp>
-              <stringProp name="Argument.value">${__P(PORT,9082)}</stringProp>
+              <stringProp name="Argument.value">${__P(PORT,9080)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="maxthinkingtime" elementType="Argument">
               <stringProp name="Argument.name">maxthinkingtime</stringProp>
-              <stringProp name="Argument.value">${__P(MAXTHINKTIME,0)}</stringProp>
+              <stringProp name="Argument.value">0</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="maximumsid" elementType="Argument">
               <stringProp name="Argument.name">maximumsid</stringProp>
               <stringProp name="Argument.value">${__P(STOCKS,9999)}</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
-            </elementProp>
-            <elementProp name="protocol" elementType="Argument">
-              <stringProp name="Argument.name">protocol</stringProp>
-              <stringProp name="Argument.value">${__P(PROTOCOL,http)}</stringProp>
-              <stringProp name="Argument.metadata">=</stringProp>
-              <stringProp name="Argument.desc">http | https</stringProp>
             </elementProp>
           </collectionProp>
         </Arguments>
@@ -120,7 +124,9 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/daytrader/welcome.faces</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -128,10 +134,9 @@
               <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             </HTTPSamplerProxy>
             <hashTree/>
             <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Login JSF" enabled="true">
@@ -176,7 +181,9 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/daytrader/welcome.faces</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -184,10 +191,9 @@
               <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             </HTTPSamplerProxy>
             <hashTree>
               <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="loop=true" enabled="true">
@@ -241,7 +247,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/quote.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -249,10 +257,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree/>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Quotes JSF" enabled="true">
@@ -325,7 +332,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/quote.faces</stringProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -333,10 +342,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
@@ -371,7 +379,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/tradehome.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -379,10 +389,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -408,7 +417,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/portfolio.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -416,10 +427,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -445,7 +455,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/account.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -453,10 +465,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -476,23 +487,20 @@
                   </FloatProperty>
                 </ThroughputController>
                 <hashTree>
-                  <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS1 open close" enabled="true">
-                    <boolProp name="createNewConnection">true</boolProp>
-                    <boolProp name="TLS">false</boolProp>
-                    <stringProp name="server">${hostname}</stringProp>
-                    <stringProp name="port">${port}</stringProp>
-                    <stringProp name="path">/daytrader/marketsummary</stringProp>
-                    <boolProp name="binaryPayload">false</boolProp>
-                    <stringProp name="requestData">{&quot;action&quot;:&quot;update&quot;}</stringProp>
-                    <stringProp name="readTimeout">60000</stringProp>
-                    <stringProp name="TestPlan.comments">open and close</stringProp>
-                  </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
-                  <hashTree>
-                    <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                      <stringProp name="ConstantTimer.delay">${maxthinkingtime}</stringProp>
-                    </ConstantTimer>
-                    <hashTree/>
-                  </hashTree>
+                  <net.unit8.jmeter.protocol.websocket.sampler.WebSocketSampler guiclass="net.unit8.jmeter.protocol.websocket.control.gui.WebSocketSamplerGui" testclass="net.unit8.jmeter.protocol.websocket.sampler.WebSocketSampler" testname="MarektSummary WebSocket JSF" enabled="true">
+                    <elementProp name="WebSocketSampler.arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                      <collectionProp name="Arguments.arguments"/>
+                    </elementProp>
+                    <stringProp name="WebSocketSampler.domain">${hostname}</stringProp>
+                    <stringProp name="WebSocketSampler.path">daytrader/marketsummary</stringProp>
+                    <stringProp name="WebSocketSampler.port">${port}</stringProp>
+                    <stringProp name="WebSocketSampler.protocol"></stringProp>
+                    <stringProp name="WebSocketSampler.contentEncoding">UTF-8</stringProp>
+                    <stringProp name="WebSocketSampler.sendMessage">{&quot;action&quot;:&quot;update&quot;}</stringProp>
+                    <stringProp name="WebSocketSampler.recvMessage"></stringProp>
+                    <boolProp name="WebSocketSampler.close">true</boolProp>
+                  </net.unit8.jmeter.protocol.websocket.sampler.WebSocketSampler>
+                  <hashTree/>
                 </hashTree>
                 <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Buy_JSF" enabled="true">
                   <intProp name="ThroughputController.style">1</intProp>
@@ -511,7 +519,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/quote.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -519,10 +529,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -600,7 +609,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/quote.faces</stringProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -608,10 +619,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
@@ -680,7 +690,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/quote.faces</stringProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -688,10 +700,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
@@ -726,7 +737,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/portfolio.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -734,10 +747,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Holdings" enabled="true">
@@ -773,7 +785,7 @@
                           </elementProp>
                           <elementProp name="portfolio:_idcl" elementType="HTTPArgument">
                             <boolProp name="HTTPArgument.always_encode">false</boolProp>
-                            <stringProp name="Argument.value">portfolio:holdings:0:sell</stringProp>
+                            <stringProp name="Argument.value">portfolio:holdings:${__Random(0,${__intSum(${numHoldings},-1,)},)}:sell</stringProp>
                             <stringProp name="Argument.metadata">=</stringProp>
                             <boolProp name="HTTPArgument.use_equals">true</boolProp>
                             <stringProp name="Argument.name">portfolio:_idcl</stringProp>
@@ -796,7 +808,9 @@
                       </elementProp>
                       <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                       <stringProp name="HTTPSampler.port">${port}</stringProp>
-                      <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.protocol">http</stringProp>
                       <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                       <stringProp name="HTTPSampler.path">/daytrader/portfolio.faces</stringProp>
                       <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -804,10 +818,9 @@
                       <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                       <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                       <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                       <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <boolProp name="HTTPSampler.monitor">false</boolProp>
+                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     </HTTPSamplerProxy>
                     <hashTree>
                       <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
@@ -843,7 +856,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/account.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -851,10 +866,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -946,7 +960,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/account.faces</stringProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -954,10 +970,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -983,7 +998,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/tradehome.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -991,10 +1008,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree/>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Logout JSF" enabled="true">
@@ -1032,7 +1048,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/tradehome.faces</stringProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1040,10 +1058,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -1066,7 +1083,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/register.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1074,10 +1093,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree/>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Register JSF" enabled="true">
@@ -1164,7 +1182,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/register.faces</stringProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1172,10 +1192,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -1198,7 +1217,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/tradehome.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1206,10 +1227,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree/>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Logout JSF" enabled="true">
@@ -1247,7 +1267,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/tradehome.faces</stringProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1255,10 +1277,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -1305,7 +1326,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/tradehome.faces</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1313,10 +1336,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree/>
                   <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Logout JSF" enabled="true">
@@ -1354,7 +1376,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/tradehome.faces</stringProp>
                     <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1362,10 +1386,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -1446,7 +1469,9 @@
               </elementProp>
               <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
               <stringProp name="HTTPSampler.port">${port}</stringProp>
-              <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
               <stringProp name="HTTPSampler.contentEncoding"></stringProp>
               <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
               <stringProp name="HTTPSampler.method">POST</stringProp>
@@ -1454,10 +1479,9 @@
               <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
               <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
               <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
               <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
             </HTTPSamplerProxy>
             <hashTree>
               <UserParameters guiclass="UserParametersGui" testclass="UserParameters" testname="loop=true" enabled="true">
@@ -1486,14 +1510,6 @@
               </ConstantTimer>
               <hashTree/>
             </hashTree>
-            <eu.luminis.jmeter.wssampler.OpenWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.OpenWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.OpenWebSocketSampler" testname="WS2 Open Connection" enabled="true">
-              <boolProp name="TLS">false</boolProp>
-              <stringProp name="server">${hostname}</stringProp>
-              <stringProp name="port">${port}</stringProp>
-              <stringProp name="path">/daytrader/marketsummary</stringProp>
-              <stringProp name="readTimeout">60000</stringProp>
-            </eu.luminis.jmeter.wssampler.OpenWebSocketSampler>
-            <hashTree/>
             <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Controller" enabled="true">
               <stringProp name="WhileController.condition">${loop}</stringProp>
             </WhileController>
@@ -1534,7 +1550,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1542,10 +1560,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
@@ -1588,7 +1605,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1596,10 +1615,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -1633,7 +1651,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1641,10 +1661,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -1678,7 +1697,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1686,10 +1707,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -1709,23 +1729,20 @@
                   </FloatProperty>
                 </ThroughputController>
                 <hashTree>
-                  <eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler" testname="WS2 existing" enabled="true">
-                    <boolProp name="createNewConnection">false</boolProp>
-                    <boolProp name="TLS">false</boolProp>
-                    <stringProp name="server">${hostname}</stringProp>
-                    <stringProp name="port">${port}</stringProp>
-                    <stringProp name="path">/daytrader/marketsummary</stringProp>
-                    <boolProp name="binaryPayload">false</boolProp>
-                    <stringProp name="requestData">{&quot;action&quot;:&quot;update&quot;}</stringProp>
-                    <stringProp name="readTimeout">60000</stringProp>
-                    <stringProp name="TestPlan.comments">use existing open connection </stringProp>
-                  </eu.luminis.jmeter.wssampler.RequestResponseWebSocketSampler>
-                  <hashTree>
-                    <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
-                      <stringProp name="ConstantTimer.delay">${maxthinkingtime}</stringProp>
-                    </ConstantTimer>
-                    <hashTree/>
-                  </hashTree>
+                  <net.unit8.jmeter.protocol.websocket.sampler.WebSocketSampler guiclass="net.unit8.jmeter.protocol.websocket.control.gui.WebSocketSamplerGui" testclass="net.unit8.jmeter.protocol.websocket.sampler.WebSocketSampler" testname="Market Summary WebSocket" enabled="true">
+                    <elementProp name="WebSocketSampler.arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                      <collectionProp name="Arguments.arguments"/>
+                    </elementProp>
+                    <stringProp name="WebSocketSampler.domain">${hostname}</stringProp>
+                    <stringProp name="WebSocketSampler.path">daytrader/marketsummary</stringProp>
+                    <stringProp name="WebSocketSampler.port">${port}</stringProp>
+                    <stringProp name="WebSocketSampler.protocol"></stringProp>
+                    <stringProp name="WebSocketSampler.contentEncoding">UTF-8</stringProp>
+                    <stringProp name="WebSocketSampler.sendMessage">{&quot;action&quot;:&quot;update&quot;}</stringProp>
+                    <stringProp name="WebSocketSampler.recvMessage"></stringProp>
+                    <boolProp name="WebSocketSampler.close">false</boolProp>
+                  </net.unit8.jmeter.protocol.websocket.sampler.WebSocketSampler>
+                  <hashTree/>
                 </hashTree>
                 <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Buy" enabled="true">
                   <intProp name="ThroughputController.style">1</intProp>
@@ -1759,7 +1776,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1767,10 +1786,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -1806,7 +1824,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1814,10 +1834,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
@@ -1860,7 +1879,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1868,10 +1889,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="First_holdingID" enabled="true">
@@ -1926,7 +1946,9 @@
                       </elementProp>
                       <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                       <stringProp name="HTTPSampler.port">${port}</stringProp>
-                      <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <stringProp name="HTTPSampler.protocol">http</stringProp>
                       <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                       <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                       <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1934,10 +1956,9 @@
                       <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                       <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                       <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                       <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                      <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                      <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                      <boolProp name="HTTPSampler.monitor">false</boolProp>
+                      <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     </HTTPSamplerProxy>
                     <hashTree>
                       <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
@@ -1981,7 +2002,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -1989,10 +2012,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -2063,7 +2085,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2071,10 +2095,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -2108,7 +2131,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2116,10 +2141,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -2133,7 +2157,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/register.jsp</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2141,10 +2167,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -2222,7 +2247,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2230,10 +2257,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -2255,7 +2281,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2263,10 +2291,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -2312,7 +2339,9 @@
                     </elementProp>
                     <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
                     <stringProp name="HTTPSampler.port">${port}</stringProp>
-                    <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
+                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <stringProp name="HTTPSampler.protocol">http</stringProp>
                     <stringProp name="HTTPSampler.contentEncoding"></stringProp>
                     <stringProp name="HTTPSampler.path">/daytrader/app</stringProp>
                     <stringProp name="HTTPSampler.method">GET</stringProp>
@@ -2320,10 +2349,9 @@
                     <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
                     <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
                     <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                     <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
-                    <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-                    <stringProp name="HTTPSampler.response_timeout"></stringProp>
+                    <boolProp name="HTTPSampler.monitor">false</boolProp>
+                    <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
                   </HTTPSamplerProxy>
                   <hashTree>
                     <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
@@ -2354,6 +2382,96 @@
                   <hashTree/>
                 </hashTree>
               </hashTree>
+            </hashTree>
+          </hashTree>
+          <ThroughputController guiclass="ThroughputControllerGui" testclass="ThroughputController" testname="Throughput Controller Struts" enabled="false">
+            <intProp name="ThroughputController.style">1</intProp>
+            <boolProp name="ThroughputController.perThread">true</boolProp>
+            <intProp name="ThroughputController.maxThroughput">1</intProp>
+            <FloatProperty>
+              <name>ThroughputController.percentThroughput</name>
+              <value>5.0</value>
+              <savedValue>0.0</savedValue>
+            </FloatProperty>
+          </ThroughputController>
+          <hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UserForm" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments"/>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
+              <stringProp name="HTTPSampler.port">${port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/daytrader/struts2/userForm</stringProp>
+              <stringProp name="HTTPSampler.method">GET</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="1720438578">Display Stat</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">${maxthinkingtime}</stringProp>
+              </ConstantTimer>
+              <hashTree/>
+            </hashTree>
+            <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="UserStats" enabled="true">
+              <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+                <collectionProp name="Arguments.arguments">
+                  <elementProp name="userName" elementType="HTTPArgument">
+                    <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                    <stringProp name="Argument.value">uid:${__Random(${minimumuid},${maximumuid},)}</stringProp>
+                    <stringProp name="Argument.metadata">=</stringProp>
+                    <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                    <stringProp name="Argument.name">userName</stringProp>
+                  </elementProp>
+                </collectionProp>
+              </elementProp>
+              <stringProp name="HTTPSampler.domain">${hostname}</stringProp>
+              <stringProp name="HTTPSampler.port">${port}</stringProp>
+              <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+              <stringProp name="HTTPSampler.response_timeout"></stringProp>
+              <stringProp name="HTTPSampler.protocol">http</stringProp>
+              <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+              <stringProp name="HTTPSampler.path">/daytrader/struts2/userStats</stringProp>
+              <stringProp name="HTTPSampler.method">POST</stringProp>
+              <boolProp name="HTTPSampler.follow_redirects">false</boolProp>
+              <boolProp name="HTTPSampler.auto_redirects">true</boolProp>
+              <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+              <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+              <stringProp name="HTTPSampler.implementation">HttpClient4</stringProp>
+              <boolProp name="HTTPSampler.monitor">false</boolProp>
+              <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+            </HTTPSamplerProxy>
+            <hashTree>
+              <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Response Assertion" enabled="true">
+                <collectionProp name="Asserion.test_strings">
+                  <stringProp name="-2010626679">User Stat</stringProp>
+                </collectionProp>
+                <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+                <boolProp name="Assertion.assume_success">false</boolProp>
+                <intProp name="Assertion.test_type">2</intProp>
+              </ResponseAssertion>
+              <hashTree/>
+              <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Constant Timer" enabled="true">
+                <stringProp name="ConstantTimer.delay">${maxthinkingtime}</stringProp>
+              </ConstantTimer>
+              <hashTree/>
             </hashTree>
           </hashTree>
         </hashTree>
@@ -2390,11 +2508,11 @@
             <sampleCount>true</sampleCount>
           </value>
         </objProp>
-        <stringProp name="filename">daytrader7.aggregateReport.csv</stringProp>
+        <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
-        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <boolProp name="ResultCollector.error_logging">true</boolProp>
         <objProp>
           <name>saveConfig</name>
           <value class="SampleSaveConfiguration">
@@ -2425,11 +2543,11 @@
             <sampleCount>true</sampleCount>
           </value>
         </objProp>
-        <stringProp name="filename">daytrader7.resultsTree.csv</stringProp>
+        <stringProp name="filename"></stringProp>
       </ResultCollector>
       <hashTree/>
       <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="false">
-        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <boolProp name="ResultCollector.error_logging">true</boolProp>
         <objProp>
           <name>saveConfig</name>
           <value class="SampleSaveConfiguration">
@@ -2460,14 +2578,9 @@
             <sampleCount>true</sampleCount>
           </value>
         </objProp>
-        <stringProp name="filename">daytrader7.resultsTable.csv</stringProp>
+        <stringProp name="filename">C:\jmeter\jmeter_script\report.csv</stringProp>
       </ResultCollector>
       <hashTree/>
     </hashTree>
-    <WorkBench guiclass="WorkBenchGui" testclass="WorkBench" testname="WorkBench" enabled="false">
-      <boolProp name="WorkBench.save">true</boolProp>
-    </WorkBench>
-    <hashTree/>
   </hashTree>
 </jmeterTestPlan>
-
